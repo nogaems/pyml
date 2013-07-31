@@ -20,7 +20,7 @@ class Templating:
         try:
             self.template = open(template).read()
         except:
-            print 'Template file \'{)}\' is not found!'.format(template)
+            print 'Template file \'{0}\' is not found!'.format(template)
             exit(1)
         self.python_code = self.templateParse(self.template)
         if self.python_code is None:
@@ -77,7 +77,7 @@ class Templating:
                 stdout_block = False
                 return output.getvalue()
             if  time.time() - start > 30:
-                return 'script execution time more than 30 seconds'
+                return 'Script execution time more than 30 seconds'
 
     def outputParse(self, output):
          return re.findall(u'<output>([.\s\S]*?)</output>', output)
@@ -112,4 +112,3 @@ if __name__ == '__main__':
         exit(0)
     temp = Templating(sys.argv[1])
     static = temp.save_static(temp.html)
-    pass
