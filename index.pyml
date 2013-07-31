@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>
+<?python
+import os, sys
+print os.environ['PWD']
+?>
+</title>
+</head>
+<body>
+<div>
+<?python
+print 'query:'
+print query.keys()
+print '</div>'
+print '<div>'
+print 'Your IP address is: {0}<br>'.format(query['remote_ip'])
+print 'Headers: {0}<br>'.format(query['headers'])
+print 'Environ:'
+?>
+</div>
+<?python
+env = os.environ
+sys.stdout.write('<table>')
+for key in env.keys():
+    if len(env[key]) > 100:
+        item = env[key][:99]
+    else:
+        item = env[key]
+    if 'ssh' in key.lower(): #deanon ololo
+        continue
+    sys.stdout.write('<tr><td bgcolor="grey">' + key + '</td><td bgcolor="green">' + item + '</td></tr>')
+sys.stdout.write('</table>')
+?>
+</body>
+</html>
